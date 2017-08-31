@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import { Router, Route, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
-import reducers from './reducers'
+import * as reducers from './reducers'
 import App from './components/App'
 import CreatePost from './components/CreatePost'
 import ViewPost from './components/ViewPost'
