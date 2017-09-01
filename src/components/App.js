@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import {loadAllPosts, loadCategories, loadPostForCategory} from '../actions'
 import {connect} from 'react-redux';
-
-
+import {Link} from 'react-router-dom'
+import ListPosts from './ListPosts'
 
 class App extends Component {
   componentDidMount() {
@@ -19,19 +19,12 @@ class App extends Component {
       <div>
         <ul>
           {categories && categories.map((category) => (
-            <li key={category.path} onClick={() => this.props.loadPostForCategory(category.path)}><b>{category.name}</b></li>
+            <li key={category.path}><Link to={`${category.path}`}><b>{category.name}</b></Link></li>
           ))}
         </ul>
-        <ul>
-          {posts && posts.map((post) => (
-            <li key={post.id}>
-                <div><b>{post.title}</b></div>
-                <div>{post.body}</div>
-                <div><span>post by {post.author} on {post.timestamp}</span></div>
-            </li>
-          ))}
-        </ul>
+        <ListPosts />
       </div>
+
     );
   }
 }
