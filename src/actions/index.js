@@ -6,6 +6,7 @@ export const POSTS_BY_CATEGORY_LOADED = 'POSTS_BY_CATEGORY_LOADED'
 export const COMMENTS_FOR_POST_LOADED = 'COMMENTS_FOR_POST_LOADED'
 export const SHOWING_POSTS_FOR_CATEGORY = 'SHOWING_POSTS_FOR_CATEGORY'
 export const LOADING_DATA = 'LOADING_DATA'
+export const SORT_POSTS_BY = 'SORT_POSTS_BY'
 
 
 export function loadingData(isLoading) {
@@ -43,4 +44,8 @@ export const loadPostForCategory = (category) => dispatch => {
       dispatch({type: SHOWING_POSTS_FOR_CATEGORY, category})
       dispatch(loadingData(false))
     })
+}
+
+export function sortBy(sortBy) {
+    return {type: SORT_POSTS_BY, sortBy}
 }

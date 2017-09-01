@@ -4,7 +4,8 @@ import {
   POSTS_BY_CATEGORY_LOADED,
   COMMENTS_FOR_POST_LOADED,
   SHOWING_POSTS_FOR_CATEGORY,
-  LOADING_DATA
+  LOADING_DATA,
+  SORT_POSTS_BY
 } from '../actions'
 
 export function categories(state = [], action) {
@@ -53,6 +54,15 @@ export function loadingData(state = false, action) {
   switch (action.type) {
     case LOADING_DATA:
       return !!action.isLoading
+    default:
+      return state;
+  }
+}
+
+export function sortPostsBy(state = '', action) {
+  switch (action.type) {
+    case SORT_POSTS_BY:
+      return action.sortBy
     default:
       return state;
   }
