@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 
-import {loadAllPosts, loadCategories, loadPostForCategory, sortBy} from '../actions'
+import {loadAllPosts, loadCategories, sortBy, voteOnPost} from '../actions'
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom'
+import * as utils from '../utils'
 
 class ListPosts extends Component {
 
@@ -31,35 +33,40 @@ class ListPosts extends Component {
     if (sortBy !== sortOptions[0]) {
       filteredPosts.sort(function(a, b) {
         if (sortBy === 'Date') {
-          return (a.timestamp < b.timestamp)? -1 : 1
+          return (a.timestamp < b.timestamp)
+            ? -1
+            : 1
         } else {
-          return (a.voteScore < b.voteScore)? -1 : 1
+          return (a.voteScore < b.voteScore)
+            ? -1
+            : 1
         }
       })
     }
 
+    console.log(JSON.stringify(filteredPosts))
+
     return (
-      <div>
-        <select value={sortBy} onChange={(event) => this.props.sortPost(event.target.value)}>
-          {sortOptions.map((opt) => (
-            <option key={opt}>{opt}</option>
-          ))}
-        </select>
-        <ul>
+
+        <div className="posts">
           {filteredPosts && filteredPosts.map((post) => (
-            <li key={post.id}>
-              <div>
-                <b>{post.title}</b>
+            <section className="post" key={post.id}>
+              <header className="post-header">
+                  <h2 className="post-title">{post.title}</h2>
+                  <p className="post-meta">
+                      By <span className="post-author">{post.author}</span> under <Link to={`${post.category}`} className="post-category post-category-design">{post.category}</Link> on {utils.printDate(post.timestamp)}
+                  </p>
+              </header>
+              <div className="post-description">
+                  <p>{post.body}</p>
               </div>
-              <div>{post.body}</div>
               <div>
-                <span>post by {post.author}
-                  on {post.timestamp}</span>
+                <span>{post.voteScore}</span>
+                <span onClick={() => this.props.voteOnPost(post.id, true)}>ThumbsUp</span>
+                <span onClick={() => this.props.voteOnPost(post.id, false)}>ThumbsDown</span>
               </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+            </section>))}
+        </div>
     );
   }
 }
@@ -67,8 +74,8 @@ function mapDispatchToProps(dispatch) {
   return {
     loadAllPosts: () => dispatch(loadAllPosts()),
     loadCategories: () => dispatch(loadCategories()),
-    loadPostForCategory: (category) => dispatch(loadPostForCategory(category)),
-    sortPost: (by) => dispatch(sortBy(by))
+    sortPost: (by) => dispatch(sortBy(by)),
+    voteOnPost: (postId, isUpVote) => dispatch(voteOnPost(postId, isUpVote))
   }
 }
 

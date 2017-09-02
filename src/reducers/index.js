@@ -5,7 +5,8 @@ import {
   COMMENTS_FOR_POST_LOADED,
   SHOWING_POSTS_FOR_CATEGORY,
   LOADING_DATA,
-  SORT_POSTS_BY
+  SORT_POSTS_BY,
+  POST_VOTED
 } from '../actions'
 
 export function categories(state = [], action) {
@@ -18,11 +19,19 @@ export function categories(state = [], action) {
 }
 
 export function posts(state = [], action) {
-  switch (action.type) {
+  const { posts, post, type} = action
+  switch (type) {
     case POSTS_LOADED:
-      return action.posts
+      return posts
     case POSTS_BY_CATEGORY_LOADED:
-      return action.posts
+      return posts
+    case POST_VOTED:
+      state && state.forEach((p, index) => {
+        if(p.id === post.id) {
+          state[index] = post
+        }
+      })
+      return state
     default:
       return state
   }

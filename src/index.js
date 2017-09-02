@@ -13,9 +13,11 @@ import CreatePost from './components/CreatePost'
 import ViewPost from './components/ViewPost'
 import ListPosts from './components/ListPosts'
 import registerServiceWorker from './registerServiceWorker';
+import './assets/css/pure-min.css'
+import './assets/css/grids-responsive-min.css'
+import './assets/css/layout.css'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-
 
 // Create a history of your choosing (we're using a browser history in this case)
 const history = createHistory()

@@ -8,6 +8,7 @@ if (!token)
 
 const headers = {
   'Accept': 'application/json',
+  'Content-Type': 'application/json',
   'Authorization': token
 }
 
@@ -55,7 +56,7 @@ export const voteOnPost = (postId, thumbsUp) =>
   fetch(`${api}/posts/${postId}`, {
     method: 'POST',
     headers: headers,
-    body: JSON.stringify({ option: thumbsUp? 'upVote' : 'downVote'})
+    body: JSON.stringify({'option': thumbsUp? 'upVote' : 'downVote'})
   }).then(res => res.json())
 
 export const addNewComment = (body, author, parentId) =>
