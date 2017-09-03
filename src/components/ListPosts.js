@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 
 import {loadAllPosts, loadCategories, sortBy, voteOnPost} from '../actions'
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom'
-import * as utils from '../utils'
+
+import Post from './Post'
 
 class ListPosts extends Component {
 
@@ -44,28 +44,12 @@ class ListPosts extends Component {
       })
     }
 
-    console.log(JSON.stringify(filteredPosts))
-
     return (
 
         <div className="posts">
           {filteredPosts && filteredPosts.map((post) => (
-            <section className="post" key={post.id}>
-              <header className="post-header">
-                  <h2 className="post-title">{post.title}</h2>
-                  <p className="post-meta">
-                      By <span className="post-author">{post.author}</span> under <Link to={`${post.category}`} className="post-category post-category-design">{post.category}</Link> on {utils.printDate(post.timestamp)}
-                  </p>
-              </header>
-              <div className="post-description">
-                  <p>{post.body}</p>
-              </div>
-              <div>
-                <span className="votes">{post.voteScore}</span>
-                <span className="icon thumbsup" onClick={() => this.props.voteOnPost(post.id, true)}></span>
-                <span className="icon thumbsdown"  onClick={() => this.props.voteOnPost(post.id, false)}></span>
-              </div>
-            </section>))}
+            <Post post={post} key={post.id} showReadMore={true}/>
+          ))}
         </div>
     );
   }
