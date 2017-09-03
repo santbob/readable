@@ -61,9 +61,9 @@ class ListPosts extends Component {
                   <p>{post.body}</p>
               </div>
               <div>
-                <span>{post.voteScore}</span>
-                <span onClick={() => this.props.voteOnPost(post.id, true)}>ThumbsUp</span>
-                <span onClick={() => this.props.voteOnPost(post.id, false)}>ThumbsDown</span>
+                <span className="votes">{post.voteScore}</span>
+                <span className="icon thumbsup" onClick={() => this.props.voteOnPost(post.id, true)}></span>
+                <span className="icon thumbsdown"  onClick={() => this.props.voteOnPost(post.id, false)}></span>
               </div>
             </section>))}
         </div>

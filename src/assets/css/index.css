@@ -1,0 +1,29 @@
+.icon {
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  background-size: 100% 100%;
+  vertical-align: middle;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.icon.thumbsup {
+  background-image: url('../images/thumbsup.png')
+}
+
+.icon.thumbsdown {
+  background-image: url('../images/thumbsdown.png')
+}
+
+.votes {
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  border-radius: 50%;
+  background: #333;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 5px;
+  padding:3px
+}
