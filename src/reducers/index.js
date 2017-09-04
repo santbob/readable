@@ -6,7 +6,8 @@ import {
   SHOWING_POSTS_FOR_CATEGORY,
   LOADING_DATA,
   SORT_POSTS_BY,
-  POST_VOTED
+  POST_VOTED,
+  COMMENT_VOTED
 } from '../actions'
 
 export function categories(state = [], action) {
@@ -44,6 +45,18 @@ export function comments(state = {}, action) {
       return {
         ...state,
         [postId]: comments
+      }
+    case COMMENT_VOTED:
+      const { comment } = action
+      const cmts = state[comment.parentId]
+      cmts && cmts.forEach((c, index) => {
+        if(c.id === comment.id) {
+          cmts[index] = comment
+        }
+      })
+      return {
+        ...state,
+        [comment.parentId] : cmts
       }
     default:
       return state

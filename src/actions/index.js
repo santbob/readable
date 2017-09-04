@@ -8,6 +8,7 @@ export const SHOWING_POSTS_FOR_CATEGORY = 'SHOWING_POSTS_FOR_CATEGORY'
 export const LOADING_DATA = 'LOADING_DATA'
 export const SORT_POSTS_BY = 'SORT_POSTS_BY'
 export const POST_VOTED = 'POST_VOTED'
+export const COMMENT_VOTED = 'COMMENT_VOTED'
 
 
 export function loadingData(isLoading) {
@@ -55,6 +56,14 @@ export const voteOnPost = (postId, isUpVote) => dispatch => {
     dispatch(loadingData(true))
     return API.voteOnPost(postId, isUpVote).then((post) => {
       dispatch({type: POST_VOTED, post})
+      dispatch(loadingData(false))
+    })
+}
+
+export const voteOnComment = (commentId, isUpVote) => dispatch => {
+    dispatch(loadingData(true))
+    return API.voteOnComment(commentId, isUpVote).then((comment) => {
+      dispatch({type: COMMENT_VOTED, comment})
       dispatch(loadingData(false))
     })
 }
