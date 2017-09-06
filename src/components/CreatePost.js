@@ -40,10 +40,10 @@ class CreatePost extends Component {
           <input type="text" className="pure-input-1" placeholder="Author Name" ref={(input) => {
             this.author = input;
           }}/>
-          <input type="text" className="pure-input-1" placeholder="A title" ref={(input) => {
+          <input type="text" className="pure-input-1" placeholder="A title for your post" ref={(input) => {
             this.title = input;
           }}/>
-          <textarea className="pure-input-1" placeholder="Textareas work too" ref={(input) => {
+          <textarea className="pure-input-1 post-body-edit" placeholder="Content of your post" ref={(input) => {
             this.body = input;
           }}></textarea>
         </fieldset>

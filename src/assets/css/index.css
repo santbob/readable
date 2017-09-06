@@ -55,3 +55,7 @@
   max-width: 800px;
   margin: auto;
 }
+
+.post-body-edit {
+  min-height: 320px;
+}
