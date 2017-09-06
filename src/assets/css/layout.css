@@ -64,10 +64,11 @@ The content `<div>` is where all your content goes.
 .header {
      margin: 0;
      text-align: center;
-     padding: 2.5em 2em 0;
+     padding: 15px;
      border-bottom: 1px solid #eee;
      background: rgb(61, 79, 93);
      color: #fff;
+     position: relative;
  }
     .header h1 {
         margin: 0.2em 0;
@@ -113,7 +114,6 @@ The content `<div>` is where all your content goes.
 .nav-item a {
     background: transparent;
     border: 2px solid rgb(176, 202, 219);
-    color: #fff;
     margin-top: 1em;
     letter-spacing: 0.05em;
     text-transform: uppercase;

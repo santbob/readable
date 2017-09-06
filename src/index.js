@@ -8,6 +8,7 @@ import { ConnectedRouter, routerReducer, routerMiddleware} from 'react-router-re
 import createHistory from 'history/createBrowserHistory'
 
 import * as reducers from './reducers'
+import {Link} from 'react-router-dom'
 import App from './components/App'
 import CreatePost from './components/CreatePost'
 import ViewPost from './components/ViewPost'
@@ -38,11 +39,18 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div>
-        <Route exact path="/" component={App}/>
-        <Route exact path="/create" component={CreatePost}/>
-        <Route exact path="/:category" component={ListPosts}/>
-        <Route exact path="/:category/:postId" component={ViewPost}/>
+      <div id="layout">
+        <div className="header">
+          <h1 className="brand-title">The Reader</h1>
+          <h2 className="brand-tagline">A React Nanodegree project</h2>
+          <Link to="/create"><button className="header_right_center fab_btn">+</button></Link>
+        </div>
+        <div className="content">
+          <Route exact path="/" component={App}/>
+          <Route exact path="/create" component={CreatePost}/>
+          <Route exact path="/:category" component={ListPosts}/>
+          <Route exact path="/:category/:postId" component={ViewPost}/>
+        </div>
       </div>
     </ConnectedRouter>
   </Provider>,

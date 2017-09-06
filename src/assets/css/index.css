@@ -27,10 +27,10 @@
   margin: 0 5px;
   padding:3px
 }
-.top_right{
+.header_right_center{
   position: absolute;
   right: 20px;
-  top: 20px;
+  top: 25%;
 }
 .fab_btn{
   background-color:#F44336;
