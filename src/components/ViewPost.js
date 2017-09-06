@@ -20,10 +20,6 @@ class ViewPost extends Component {
   render() {
     const {posts, match, comments} = this.props
 
-    const category = (match && match.params && match.params.category)
-      ? match.params.category
-      : null
-
     const postId = (match && match.params && match.params.postId)
       ? match.params.postId
       : null

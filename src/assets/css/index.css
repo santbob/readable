@@ -50,3 +50,8 @@
 .fab_btn:hover {
   background-color:#B71C1C;
 }
+
+.create-post-form {
+  max-width: 800px;
+  margin: auto;
+}

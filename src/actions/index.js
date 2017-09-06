@@ -8,6 +8,7 @@ export const SHOWING_POSTS_FOR_CATEGORY = 'SHOWING_POSTS_FOR_CATEGORY'
 export const LOADING_DATA = 'LOADING_DATA'
 export const SORT_POSTS_BY = 'SORT_POSTS_BY'
 export const POST_VOTED = 'POST_VOTED'
+export const POST_ADDED = 'POST_ADDED'
 export const COMMENT_VOTED = 'COMMENT_VOTED'
 
 
@@ -66,4 +67,8 @@ export const voteOnComment = (commentId, isUpVote) => dispatch => {
       dispatch({type: COMMENT_VOTED, comment})
       dispatch(loadingData(false))
     })
+}
+
+export function postCreated(post) {
+  return {type: POST_ADDED, post}
 }

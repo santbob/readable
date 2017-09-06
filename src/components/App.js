@@ -12,7 +12,7 @@ class App extends Component {
     loadAllPosts()
   }
   render() {
-    const {categories, posts} = this.props
+    const {categories} = this.props
     return (
       <div>
         <nav className="nav">

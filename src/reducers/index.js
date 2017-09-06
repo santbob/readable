@@ -7,7 +7,8 @@ import {
   LOADING_DATA,
   SORT_POSTS_BY,
   POST_VOTED,
-  COMMENT_VOTED
+  COMMENT_VOTED,
+  POST_ADDED,
 } from '../actions'
 
 export function categories(state = [], action) {
@@ -26,6 +27,9 @@ export function posts(state = [], action) {
       return posts
     case POSTS_BY_CATEGORY_LOADED:
       return posts
+    case POST_ADDED:
+      state.push(post)
+      return state
     case POST_VOTED:
       state && state.forEach((p, index) => {
         if(p.id === post.id) {
