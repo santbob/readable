@@ -59,3 +59,7 @@
 .post-body-edit {
   min-height: 320px;
 }
+.sort-option {
+  position: absolute;
+  right: 10px;
+}

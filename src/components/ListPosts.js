@@ -20,7 +20,7 @@ class ListPosts extends Component {
   render() {
     const {posts, match, sortPostsBy} = this.props
 
-    const sortOptions = ["Default", "Date", "Votes"]
+    const sortOptions = ["Date", "Votes"]
 
     const sortBy = sortPostsBy || sortOptions[0]
 
@@ -30,23 +30,25 @@ class ListPosts extends Component {
 
     const filteredPosts = posts.filter(post => !category || (category && post.category === category));
 
-    if (sortBy !== sortOptions[0]) {
-      filteredPosts.sort(function(a, b) {
-        if (sortBy === 'Date') {
-          return (a.timestamp < b.timestamp)
-            ? -1
-            : 1
-        } else {
-          return (a.voteScore < b.voteScore)
-            ? -1
-            : 1
-        }
-      })
-    }
+    filteredPosts.sort(function(a, b) {
+      if (sortBy === 'Date') {
+        return (a.timestamp > b.timestamp)
+          ? -1
+          : 1
+      } else {
+        return (a.voteScore > b.voteScore)
+          ? -1
+          : 1
+      }
+    })
 
     return (
-
         <div className="posts">
+          <select className="sort-option" value={sortBy} onChange={(event) => this.props.sortPost(event.target.value)}>
+            {sortOptions.map((opt) => (
+              <option key={opt}>{opt}</option>
+            ))}
+          </select>
           {filteredPosts && filteredPosts.map((post) => (
             <Post post={post} key={post.id} showReadMore={true}/>
           ))}
