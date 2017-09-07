@@ -9,7 +9,13 @@ export const LOADING_DATA = 'LOADING_DATA'
 export const SORT_POSTS_BY = 'SORT_POSTS_BY'
 export const POST_VOTED = 'POST_VOTED'
 export const POST_ADDED = 'POST_ADDED'
+export const POST_UPDATED = 'POST_UPDATED'
+export const POST_DELETED = 'POST_DELETED'
+
 export const COMMENT_VOTED = 'COMMENT_VOTED'
+export const COMMENT_ADDED = 'COMMENT_ADDED'
+export const COMMENT_UPDATED = 'COMMENT_UPDATED'
+export const COMMENT_DELETED = 'COMMENT_DELETED'
 
 
 export function loadingData(isLoading) {
@@ -35,7 +41,7 @@ export const loadCategories = () => dispatch => {
 export const loadCommentsForPost = (postId) => dispatch => {
     dispatch(loadingData(true))
     return API.getCommentsForPost(postId).then((comments) => {
-      dispatch({type: COMMENTS_FOR_POST_LOADED, postId, comments})
+      dispatch({type: COMMENTS_FOR_POST_LOADED, comments})
       dispatch(loadingData(false))
     })
 }
@@ -71,4 +77,24 @@ export const voteOnComment = (commentId, isUpVote) => dispatch => {
 
 export function postCreated(post) {
   return {type: POST_ADDED, post}
+}
+
+export function postUpdated(post) {
+  return {type: POST_UPDATED, post}
+}
+
+export function postDeleted(post) {
+  return {type: POST_DELETED, post}
+}
+
+export function commentCreated(comment) {
+  return {type: COMMENT_ADDED, comment}
+}
+
+export function commentUpdated(comment) {
+  return {type: COMMENT_UPDATED, comment}
+}
+
+export function commentDeleted(comment) {
+  return {type: COMMENT_DELETED, comment}
 }

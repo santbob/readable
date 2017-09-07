@@ -14,7 +14,6 @@ class ViewPost extends Component {
       ? match.params.postId
       : null
 
-    console.log(JSON.stringify(postId))
     loadCommentsForPost(postId)
   }
   render() {
@@ -24,21 +23,20 @@ class ViewPost extends Component {
       ? match.params.postId
       : null
 
-    const post = posts.filter(p => p.id === postId)[0];
+    const post = posts[postId]
 
-
-    const commentsForPost = comments[postId]
+    const commentsForPost = Object.values(comments).filter(comment => comment.parentId === postId)
 
     return (
+      <div>
+        <Post post={post}/>
         <div>
-          <Post post={post} />
-          <div>
-            <div>Responses</div>
-            {commentsForPost && commentsForPost.map((comment) => (
-              <Comment comment={comment} key={comment.id}/>
-            ))}
-          </div>
+          <div>Responses</div>
+          {commentsForPost && commentsForPost.map((comment) => (
+            <Comment comment={comment} key={comment.id}/>
+          ))}
         </div>
+      </div>
     );
   }
 }

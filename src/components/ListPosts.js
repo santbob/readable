@@ -28,7 +28,7 @@ class ListPosts extends Component {
       ? match.params.category
       : null
 
-    const filteredPosts = posts.filter(post => !category || (category && post.category === category));
+    const filteredPosts = Object.values(posts).filter(post => !category || (category && post.category === category));
 
     filteredPosts.sort(function(a, b) {
       if (sortBy === 'Date') {

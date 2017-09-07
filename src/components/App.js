@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import {loadAllPosts, loadCategories, loadPostForCategory} from '../actions'
 import {connect} from 'react-redux';
@@ -16,13 +16,17 @@ class App extends Component {
     return (
       <div>
         <nav className="nav">
-            <ul className="nav-list">
-              {categories && categories.map((category) => (
-                <li className="nav-item" key={category.path}><Link to={`${category.path}`} className="pure-button"><b>{category.name}</b></Link></li>
-              ))}
-            </ul>
+          <ul className="nav-list">
+            {categories && categories.map((category) => (
+              <li className="nav-item" key={category.path}>
+                <Link to={`${category.path}`} className="pure-button">
+                  <b>{category.name}</b>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </nav>
-          <ListPosts />
+        <ListPosts/>
       </div>
     );
   }
