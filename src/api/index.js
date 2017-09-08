@@ -1,5 +1,6 @@
-const api = "http://localhost:5001"
+import * as utils from '../utils'
 
+const api = "http://localhost:3001"
 
 // Generate a unique token for storing your bookshelf data on the backend server.
 let token = localStorage.token
@@ -36,7 +37,7 @@ export const addNewPost = (title, body, author, category) =>
   fetch(`${api}/posts`, {
     method: 'POST',
     headers: headers,
-    body: JSON.stringify({ title, body, author, category, id: Math.random().toString(24), timestamp:Date.now()})
+    body: JSON.stringify({ title, body, author, category, id: utils.randomString(20), timestamp:Date.now()})
   }).then(res => res.json())
 
 export const editPost = (postId, title, body) =>
@@ -51,6 +52,7 @@ export const deletePost = (postId) =>
     method: 'DELETE',
     headers: headers
   }).then(res => res.json())
+  .then(data => data)
 
 export const voteOnPost = (postId, thumbsUp) =>
   fetch(`${api}/posts/${postId}`, {
@@ -63,7 +65,7 @@ export const addNewComment = (body, author, parentId) =>
   fetch(`${api}/comments`, {
     method: 'POST',
     headers: headers,
-    body: JSON.stringify({ parentId, body, author, id: (parentId + Math.random().toString(12)), timestamp:Date.now()})
+    body: JSON.stringify({ parentId, body, author, id: (parentId + '_' + utils.randomString(10)), timestamp:Date.now()})
   }).then(res => res.json())
 
 export const editComment = (commentId, body) =>

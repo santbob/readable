@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import * as utils from '../utils'
-import {voteOnPost} from '../actions'
+import {voteOnPost, deletePost} from '../actions'
 import {connect} from 'react-redux';
 
 
@@ -21,9 +21,10 @@ class Post extends Component {
             <p>{post.body} {readMore}</p>
         </div>
         <div>
-          <span className="votes">{post.voteScore}</span>
-          <span className="icon thumbsup" onClick={() => this.props.voteOnPost(post.id, true)}></span>
-          <span className="icon thumbsdown"  onClick={() => this.props.voteOnPost(post.id, false)}></span>
+          <div className="icon-container"><span className="votes">{post.voteScore}</span><div>Score</div></div>
+          <div className="icon-container" onClick={() => this.props.voteOnPost(post.id, true)}><i className="icon thumbsup"/><div>Nice</div></div>
+          <div className="icon-container" onClick={() => this.props.voteOnPost(post.id, false)}><i className="icon thumbsdown"/><div>Bad</div></div>
+          <div className="icon-container" onClick={() => this.props.deletePost(post.id)}><i className="icon delete"/><div>Delete</div></div>
         </div>
       </section>
     );
@@ -32,7 +33,8 @@ class Post extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    voteOnPost: (postId, isUpVote) => dispatch(voteOnPost(postId, isUpVote))
+    voteOnPost: (postId, isUpVote) => dispatch(voteOnPost(postId, isUpVote)),
+    deletePost: (postId) => dispatch(deletePost(postId))
   }
 }
 

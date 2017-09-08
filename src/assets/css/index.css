@@ -1,3 +1,8 @@
+.icon-container {
+  display: inline-block;
+  margin: 0 5px;
+  text-align: center;
+}
 .icon {
   width: 25px;
   height: 25px;
@@ -8,11 +13,15 @@
   cursor: pointer;
 }
 .icon.thumbsup {
-  background-image: url('../images/thumbsup.png')
+  background-image: url('../images/ic_thumbsup.png')
 }
 
 .icon.thumbsdown {
-  background-image: url('../images/thumbsdown.png')
+  background-image: url('../images/ic_thumbsdown.png')
+}
+
+.icon.delete {
+  background-image: url('../images/ic_delete.png')
 }
 
 .votes {

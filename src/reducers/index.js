@@ -38,13 +38,11 @@ export function posts(state = {}, action) {
     case POST_VOTED:
     case POST_ADDED:
     case POST_UPDATED:
+    case POST_DELETED:
       return {
         ...state,
         [post.id]: post
       }
-    case POST_DELETED:
-      delete state[post.id]
-      return state
     default:
       return state
   }

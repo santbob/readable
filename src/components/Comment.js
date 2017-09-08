@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as utils from '../utils'
-import {voteOnComment} from '../actions'
+import {voteOnComment, deleteComment} from '../actions'
 import {connect} from 'react-redux';
 
 
@@ -16,9 +16,10 @@ class Comment extends Component {
             <p>{comment.body}</p>
         </div>
         <div>
-          <span className="votes">{comment.voteScore}</span>
-          <span className="icon thumbsup" onClick={() => this.props.voteOnComment(comment.id, true)}></span>
-          <span className="icon thumbsdown"  onClick={() => this.props.voteOnComment(comment.id, false)}></span>
+          <div className="icon-container"><span className="votes">{comment.voteScore}</span><div>Score</div></div>
+          <div className="icon-container" onClick={() => this.props.voteOnComment(comment.id, true)}><i className="icon thumbsup"/><div>Nice</div></div>
+          <div className="icon-container" onClick={() => this.props.voteOnComment(comment.id, false)}><i className="icon thumbsdown"/><div>Bad</div></div>
+          <div className="icon-container" onClick={() => this.props.deleteComment(comment.id)}><i className="icon delete"/><div>Delete</div></div>
         </div>
       </section>
     );
@@ -27,7 +28,8 @@ class Comment extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    voteOnComment: (commentId, isUpVote) => dispatch(voteOnComment(commentId, isUpVote))
+    voteOnComment: (commentId, isUpVote) => dispatch(voteOnComment(commentId, isUpVote)),
+    deleteComment: (commentId) => dispatch(deleteComment(commentId))
   }
 }
 

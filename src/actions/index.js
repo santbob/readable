@@ -67,10 +67,26 @@ export const voteOnPost = (postId, isUpVote) => dispatch => {
     })
 }
 
+export const deletePost = (postId) => dispatch => {
+    dispatch(loadingData(true))
+    return API.deletePost(postId).then((post) => {
+      dispatch({type: POST_DELETED, post})
+      dispatch(loadingData(false))
+    })
+}
+
 export const voteOnComment = (commentId, isUpVote) => dispatch => {
     dispatch(loadingData(true))
     return API.voteOnComment(commentId, isUpVote).then((comment) => {
       dispatch({type: COMMENT_VOTED, comment})
+      dispatch(loadingData(false))
+    })
+}
+
+export const deleteComment = (commentId) => dispatch => {
+    dispatch(loadingData(true))
+    return API.deleteComment(commentId).then((comment) => {
+      dispatch({type: COMMENT_DELETED, comment})
       dispatch(loadingData(false))
     })
 }

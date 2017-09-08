@@ -25,7 +25,7 @@ class ViewPost extends Component {
 
     const post = posts[postId]
 
-    const commentsForPost = Object.values(comments).filter(comment => comment.parentId === postId)
+    const commentsForPost = Object.values(comments).filter(comment => comment.parentId === postId && !comment.deleted)
 
     return (
       <div>
