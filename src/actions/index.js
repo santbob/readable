@@ -99,10 +99,6 @@ export function postUpdated(post) {
   return {type: POST_UPDATED, post}
 }
 
-export function postDeleted(post) {
-  return {type: POST_DELETED, post}
-}
-
 export function commentCreated(comment) {
   return {type: COMMENT_ADDED, comment}
 }

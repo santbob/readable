@@ -29,7 +29,7 @@ class ViewPost extends Component {
 
     return (
       <div>
-        <Post post={post}/>
+        <Post post={post} showReadMore={false} showEdit={true}/>
         <div>
           <div>Responses</div>
           {commentsForPost && commentsForPost.map((comment) => (

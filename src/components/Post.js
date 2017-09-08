@@ -7,8 +7,9 @@ import {connect} from 'react-redux';
 
 class Post extends Component {
   render() {
-    const {post, showReadMore} = this.props
+    const {post, showReadMore, showEdit} = this.props
     const readMore = (showReadMore)? <span><Link to={`${post.category}/${post.id}`}>read more...</Link></span> : ''
+    const editLink = (showEdit)? <span><Link to={`/${post.category}/${post.id}/edit`}>edit</Link></span> : ''
     return (
       <section className="post" key={post.id}>
         <header className="post-header">
@@ -18,7 +19,7 @@ class Post extends Component {
             </p>
         </header>
         <div className="post-description">
-            <p>{post.body} {readMore}</p>
+            <p>{post.body} {readMore} {editLink}</p>
         </div>
         <div>
           <div className="icon-container"><span className="votes">{post.voteScore}</span><div>Score</div></div>

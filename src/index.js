@@ -13,6 +13,7 @@ import App from './components/App'
 import CreatePost from './components/CreatePost'
 import ViewPost from './components/ViewPost'
 import ListPosts from './components/ListPosts'
+import EditPost from './components/EditPost'
 import registerServiceWorker from './registerServiceWorker';
 import './assets/css/pure-min.css'
 import './assets/css/grids-responsive-min.css'
@@ -41,7 +42,7 @@ ReactDOM.render(
     <ConnectedRouter history={history}>
       <div id="layout">
         <div className="header">
-          <h1 className="brand-title">The Reader</h1>
+          <h1 className="brand-title"><Link to={"/"}>The Reader</Link></h1>
           <h2 className="brand-tagline">A React Nanodegree project</h2>
           <Link to="/create"><button className="header_right_center fab_btn">+</button></Link>
         </div>
@@ -50,6 +51,7 @@ ReactDOM.render(
           <Route exact path="/create" component={CreatePost}/>
           <Route exact path="/:category" component={ListPosts}/>
           <Route exact path="/:category/:postId" component={ViewPost}/>
+          <Route exact path="/:category/:postId/edit" component={EditPost}/>
         </div>
       </div>
     </ConnectedRouter>
