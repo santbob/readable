@@ -12,7 +12,9 @@ import {
   COMMENT_VOTED,
   COMMENT_ADDED,
   COMMENT_UPDATED,
-  COMMENT_DELETED
+  COMMENT_DELETED,
+  SHOW_COMMENT_FORM,
+  HIDE_COMMENT_FORM
 } from '../actions'
 
 export function categories(state = [], action) {
@@ -96,6 +98,23 @@ export function sortPostsBy(state = '', action) {
   switch (action.type) {
     case SORT_POSTS_BY:
       return action.sortBy
+    default:
+      return state;
+  }
+}
+
+export function commentModal(state = {}, action) {
+  const {comment} = action
+  switch (action.type) {
+    case SHOW_COMMENT_FORM:
+      return {
+        comment,
+        isOpen: true
+      }
+    case HIDE_COMMENT_FORM:
+      return {
+        isOpen: false
+      }
     default:
       return state;
   }

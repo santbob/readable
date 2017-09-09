@@ -29,7 +29,7 @@ class PostForm extends Component {
     this.selectedCategory = this.selectedCategory || category || (categories[0]? categories[0].path : "")
 
     return (
-      <form onSubmit={this.onFormSubmit} className="pure-form create-post-form">
+      <form onSubmit={this.onFormSubmit} className="pure-form post-form">
        <fieldset className="pure-group">
           <label htmlFor="category">Category</label>
           <select id="category" className="pure-input-1" disabled={category? "disabled" : ""} value={this.selectedCategory} onChange={(event) => this.selectedCategory = event.target.value}>

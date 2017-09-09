@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as utils from '../utils'
-import {voteOnComment, deleteComment} from '../actions'
+import {voteOnComment, deleteComment, showCommentForm} from '../actions'
 import {connect} from 'react-redux';
 
 
@@ -20,6 +20,7 @@ class Comment extends Component {
           <div className="icon-container" onClick={() => this.props.voteOnComment(comment.id, true)}><i className="icon thumbsup"/><div>Nice</div></div>
           <div className="icon-container" onClick={() => this.props.voteOnComment(comment.id, false)}><i className="icon thumbsdown"/><div>Bad</div></div>
           <div className="icon-container" onClick={() => this.props.deleteComment(comment.id)}><i className="icon delete"/><div>Delete</div></div>
+          <div className="icon-container" onClick={() => this.props.showCommentForm(comment)}><i className="icon edit"/><div>Edit</div></div>
         </div>
       </section>
     );
@@ -29,7 +30,8 @@ class Comment extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     voteOnComment: (commentId, isUpVote) => dispatch(voteOnComment(commentId, isUpVote)),
-    deleteComment: (commentId) => dispatch(deleteComment(commentId))
+    deleteComment: (commentId) => dispatch(deleteComment(commentId)),
+    showCommentForm: (comment) => dispatch(showCommentForm(comment))
   }
 }
 

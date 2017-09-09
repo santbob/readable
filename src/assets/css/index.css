@@ -2,6 +2,7 @@
   display: inline-block;
   margin: 0 5px;
   text-align: center;
+  cursor: pointer;
 }
 .icon {
   width: 25px;
@@ -10,7 +11,6 @@
   background-size: 100% 100%;
   vertical-align: middle;
   margin: 0 5px;
-  cursor: pointer;
 }
 .icon.thumbsup {
   background-image: url('../images/ic_thumbsup.png')
@@ -22,6 +22,13 @@
 
 .icon.delete {
   background-image: url('../images/ic_delete.png')
+}
+
+.icon.add {
+  background-image: url('../images/ic_add.png')
+}
+.icon.edit {
+  background-image: url('../images/ic_edit.png')
 }
 
 .votes {
@@ -60,15 +67,39 @@
   background-color:#B71C1C;
 }
 
-.create-post-form {
+.post-form, .comment-form {
   max-width: 800px;
   margin: auto;
+}
+
+.form-title {
+  background: wheat;
+  margin: 0;
+  padding: 10px;
 }
 
 .post-body-edit {
   min-height: 320px;
 }
+
+.comment-body-edit{
+  min-height: 200px;
+}
 .sort-option {
   position: absolute;
   right: 10px;
+}
+
+.Modal {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #333333;
 }

@@ -61,11 +61,11 @@ export const voteOnPost = (postId, thumbsUp) =>
     body: JSON.stringify({'option': thumbsUp? 'upVote' : 'downVote'})
   }).then(res => res.json())
 
-export const addNewComment = (body, author, parentId) =>
+export const addComment = (body, author, parentId) =>
   fetch(`${api}/comments`, {
     method: 'POST',
     headers: headers,
-    body: JSON.stringify({ parentId, body, author, id: (parentId + '_' + utils.randomString(10)), timestamp:Date.now()})
+    body: JSON.stringify({ parentId, body, author, id: (parentId + '_' + utils.randomString(5)), timestamp:Date.now()})
   }).then(res => res.json())
 
 export const editComment = (commentId, body) =>

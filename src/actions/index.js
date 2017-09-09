@@ -17,6 +17,8 @@ export const COMMENT_ADDED = 'COMMENT_ADDED'
 export const COMMENT_UPDATED = 'COMMENT_UPDATED'
 export const COMMENT_DELETED = 'COMMENT_DELETED'
 
+export const SHOW_COMMENT_FORM = 'SHOW_COMMENT_FORM'
+export const HIDE_COMMENT_FORM = 'HIDE_COMMENT_FORM'
 
 export function loadingData(isLoading) {
   return {type: LOADING_DATA, isLoading}
@@ -99,7 +101,7 @@ export function postUpdated(post) {
   return {type: POST_UPDATED, post}
 }
 
-export function commentCreated(comment) {
+export function commentAdded(comment) {
   return {type: COMMENT_ADDED, comment}
 }
 
@@ -109,4 +111,12 @@ export function commentUpdated(comment) {
 
 export function commentDeleted(comment) {
   return {type: COMMENT_DELETED, comment}
+}
+
+export function showCommentForm(comment) {
+  return {type: SHOW_COMMENT_FORM, comment}
+}
+
+export function hideCommentForm() {
+  return {type: HIDE_COMMENT_FORM}
 }
