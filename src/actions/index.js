@@ -93,7 +93,7 @@ export const deleteComment = (commentId) => dispatch => {
     })
 }
 
-export function postCreated(post) {
+export function postAdded(post) {
   return {type: POST_ADDED, post}
 }
 

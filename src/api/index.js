@@ -33,7 +33,7 @@ export const getAllPostsInCategory = (category) =>
     .then(res => res.json())
     .then(data => data)
 
-export const addNewPost = (title, body, author, category) =>
+export const addPost = (title, body, author, category) =>
   fetch(`${api}/posts`, {
     method: 'POST',
     headers: headers,

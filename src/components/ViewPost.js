@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {loadCommentsForPost, showCommentForm, hideCommentForm, commentAdded} from '../actions'
+import {loadCommentsForPost, showCommentForm, hideCommentForm, commentAdded, commentUpdated} from '../actions'
 import {connect} from 'react-redux';
 
 import Post from './Post'
@@ -28,16 +28,23 @@ class ViewPost extends Component {
     this.props.hideCommentForm()
   }
 
-  onAddComment = ({body, author}) => {
-    const {commentAdded, match} = this.props
+  onAddComment = ({body, author, id}) => {
+    const {commentAdded, commentUpdated, match} = this.props
     const postId = (match && match.params && match.params.postId)
       ? match.params.postId
       : null
     if (body && author && postId) {
-      API.addComment(body, author, postId).then((c) => {
-        commentAdded(c)
-        this.closeCommentModal()
-      })
+      if(id) {
+        API.editComment(id, body).then((c) => {
+          commentUpdated(c)
+          this.closeCommentModal()
+        })
+      } else {
+        API.addComment(body, author, postId).then((c) => {
+          commentAdded(c)
+          this.closeCommentModal()
+        })
+      }
     }
   }
 
@@ -79,7 +86,8 @@ function mapDispatchToProps(dispatch) {
     loadCommentsForPost: (postId) => dispatch(loadCommentsForPost(postId)),
     showCommentForm:() => dispatch(showCommentForm()),
     hideCommentForm:() => dispatch(hideCommentForm()),
-    commentAdded:(comment) => dispatch(commentAdded(comment))
+    commentAdded:(comment) => dispatch(commentAdded(comment)),
+    commentUpdated:(comment) => dispatch(commentUpdated(comment))
   }
 }
 

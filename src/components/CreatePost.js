@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {postCreated} from '../actions'
+import {postAdded} from '../actions'
 import * as API from '../api'
 import {connect} from 'react-redux'
 import {Link, withRouter} from 'react-router-dom'
@@ -13,11 +13,11 @@ class CreatePost extends Component {
   }
 
   onSubmit({title, body, author, category}) {
-    const {postCreated, history: {push} } = this.props
+    const {postAdded, history: {push} } = this.props
 
     if (title && body && author && category) {
-      API.addNewPost(title, body, author, category).then((post) => {
-        postCreated(post)
+      API.addPost(title, body, author, category).then((post) => {
+        postAdded(post)
         push("/")
       })
     }
@@ -31,7 +31,7 @@ class CreatePost extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    postCreated: (post) => dispatch(postCreated(post))
+    postAdded: (post) => dispatch(postAdded(post))
   }
 }
 
