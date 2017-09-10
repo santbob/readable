@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {postAdded} from '../actions'
 import * as API from '../api'
 import {connect} from 'react-redux'
-import {Link, withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import PostForm from './PostForm'
 
 class CreatePost extends Component {

@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {Link, withRouter} from 'react-router-dom'
 
 class CommentForm extends Component {
 
@@ -29,7 +28,7 @@ class CommentForm extends Component {
   }
 
   render() {
-    const {comment, submitBtnText, post, onCancel} = this.props
+    const {comment, submitBtnText, post} = this.props
     const {body, author} = comment || {}
 
     return (
