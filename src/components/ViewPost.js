@@ -70,13 +70,13 @@ class ViewPost extends Component {
     return (
       <div>
         <Post post={post} showReadMore={false} showEdit={true}/>
-        <div>
-          <div>Responses <div className="icon-container" onClick={this.openCommentModal}><span className="icon add"></span><span>Add New Comment</span></div></div>
+        <section>
+          <div className="comments-section-title">Comments <div className="pure-button comment-add" onClick={this.openCommentModal}><span className="icon add"></span><span>Add Comment</span></div></div>
           {commentsForPost && commentsForPost.map((comment) => (<Comment comment={comment} key={comment.id}/>))}
           <ReactModal className='Modal' overlayClassName='Overlay' isOpen={commentModal && commentModal.isOpen} onRequestClose={this.closeCommentModal} contentLabel='Modal'>
             {commentModal && commentModal.isOpen && <CommentForm submitBtnText={commentModal.comment? 'Update' : 'Publish'} onSubmit={this.onAddComment} comment={commentModal.comment} post={post} onClose={this.closeCommentModal}/>}
           </ReactModal>
-        </div>
+        </section>
       </div>
     );
   }

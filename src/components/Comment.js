@@ -8,19 +8,17 @@ class Comment extends Component {
   render() {
     const {comment} = this.props
     return (
-      <section className="post" key={comment.id}>
-        <header className="post-header">
-            <p className="post-meta"><span className="post-author">{comment.author}</span> on {utils.printDate(comment.timestamp)}</p>
+      <section className="comment" key={comment.id}>
+        <header className="comment-header">
+            <p className="comment-meta"><span className="comment-author">{comment.author}</span> on {utils.printDate(comment.timestamp)}</p>
         </header>
-        <div className="post-description">
-            <p>{comment.body}</p>
-        </div>
-        <div>
-          <div className="icon-container"><span className="votes">{comment.voteScore}</span><div>Score</div></div>
-          <div className="icon-container" onClick={() => this.props.voteOnComment(comment.id, true)}><i className="icon thumbsup"/><div>Nice</div></div>
-          <div className="icon-container" onClick={() => this.props.voteOnComment(comment.id, false)}><i className="icon thumbsdown"/><div>Bad</div></div>
-          <div className="icon-container" onClick={() => this.props.deleteComment(comment.id)}><i className="icon delete"/><div>Delete</div></div>
-          <div className="icon-container" onClick={() => this.props.showCommentForm(comment)}><i className="icon edit"/><div>Edit</div></div>
+        <div className="comment-description">{comment.body}</div>
+        <div className="comment-actions">
+          <div className="icon-container">Score <span className="votes">{comment.voteScore}</span></div>
+          <span className="icon thumbsup" onClick={() => this.props.voteOnComment(comment.id, true)}>Nice</span>
+          <span className="icon thumbsdown" onClick={() => this.props.voteOnComment(comment.id, false)}>Bad</span>
+          <span className="icon delete" onClick={() => this.props.deleteComment(comment.id)}>Delete</span>
+          <span className="icon edit"  onClick={() => this.props.showCommentForm(comment)}>Edit</span>
         </div>
       </section>
     );
