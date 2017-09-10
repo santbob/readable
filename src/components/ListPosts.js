@@ -50,7 +50,7 @@ class ListPosts extends Component {
             ))}
           </select>
           {filteredPosts && filteredPosts.map((post) => (
-            <Post post={post} key={post.id} showReadMore={true}/>
+            <Post post={post} key={post.id} showShortVersion={true}/>
           ))}
         </div>
     );

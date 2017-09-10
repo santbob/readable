@@ -14,11 +14,11 @@ class Comment extends Component {
         </header>
         <div className="comment-description">{comment.body}</div>
         <div className="comment-actions">
-          <div className="icon-container">Score <span className="votes">{comment.voteScore}</span></div>
-          <span className="icon thumbsup" onClick={() => this.props.voteOnComment(comment.id, true)}>Nice</span>
-          <span className="icon thumbsdown" onClick={() => this.props.voteOnComment(comment.id, false)}>Bad</span>
-          <span className="icon delete" onClick={() => this.props.deleteComment(comment.id)}>Delete</span>
-          <span className="icon edit"  onClick={() => this.props.showCommentForm(comment)}>Edit</span>
+          <div className="icon-container" title="Comment Score">Score <span className="votes">{comment.voteScore}</span></div>
+          <span title="Up vote the comment" className="icon thumbsup" onClick={() => this.props.voteOnComment(comment.id, true)}>Nice</span>
+          <span title="Down vote the comment" className="icon thumbsdown" onClick={() => this.props.voteOnComment(comment.id, false)}>Bad</span>
+          <span title="Delete this comment" className="icon delete" onClick={() => this.props.deleteComment(comment.id)}>Delete</span>
+          <span title="Edit this comment" className="icon edit"  onClick={() => this.props.showCommentForm(comment)}>Edit</span>
         </div>
       </section>
     );

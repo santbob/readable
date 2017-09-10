@@ -67,11 +67,13 @@ class ViewPost extends Component {
 
     const commentsForPost = Object.values(comments).filter(comment => comment.parentId === postId && !comment.deleted)
 
+    const commentsCount = (commentsForPost && commentsForPost.length)? <span>&#40;{commentsForPost.length}&#41;</span> : ''
+
     return (
       <div>
         <Post post={post} showReadMore={false} showEdit={true}/>
         <section>
-          <div className="comments-section-title">Comments <div className="pure-button comment-add" onClick={this.openCommentModal}><span className="icon add"></span><span>Add Comment</span></div></div>
+          <div className="comments-section-title">Comments {commentsCount} <div className="pure-button comment-add" onClick={this.openCommentModal}><span className="icon add"></span><span>Add Comment</span></div></div>
           {commentsForPost && commentsForPost.map((comment) => (<Comment comment={comment} key={comment.id}/>))}
           <ReactModal className='Modal' overlayClassName='Overlay' isOpen={commentModal && commentModal.isOpen} onRequestClose={this.closeCommentModal} contentLabel='Modal'>
             {commentModal && commentModal.isOpen && <CommentForm submitBtnText={commentModal.comment? 'Update' : 'Publish'} onSubmit={this.onAddComment} comment={commentModal.comment} post={post} onClose={this.closeCommentModal}/>}
