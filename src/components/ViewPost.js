@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 
-import * as commentActions from '../actions/commentActions'
+import {loadAllPosts} from '../actions/postActions'
+import {loadCommentsForPost, showCommentForm, hideCommentForm, commentAdded, commentUpdated} from '../actions/commentActions'
 import {connect} from 'react-redux';
-
+import {Link} from 'react-router-dom'
 import Post from './Post'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
@@ -49,10 +50,15 @@ class ViewPost extends Component {
   }
 
   componentDidMount() {
-    const {match, loadCommentsForPost} = this.props
+    const {posts,match, loadCommentsForPost,loadAllPosts} = this.props
     const postId = (match && match.params && match.params.postId)
       ? match.params.postId
       : null
+
+    if(!posts || !posts[postId]) {
+      console.log('triggering all posts')
+      loadAllPosts()
+    }
 
     loadCommentsForPost(postId)
   }
@@ -65,13 +71,14 @@ class ViewPost extends Component {
 
     const post = posts[postId]
 
+    const postDeleted = (post && post.deleted)? <div>Post doesnt exists. checkout other <Link to={"/"}>posts</Link>.</div> : ''
     const commentsForPost = Object.values(comments).filter(comment => comment.parentId === postId && !comment.deleted)
 
     const commentsCount = (commentsForPost && commentsForPost.length)? <span>&#40;{commentsForPost.length}&#41;</span> : ''
 
     return (
       <div>
-        {post && (<div><Post post={post} showReadMore={false} showEdit={true}/>
+        {post && !post.deleted && (<div><Post post={post} showReadMore={false} showEdit={true}/>
         <section>
           <div className="comments-section-title">Comments {commentsCount} <div className="pure-button comment-add" onClick={this.openCommentModal}><span className="icon add"></span><span>Add Comment</span></div></div>
           {commentsForPost && commentsForPost.map((comment) => (<Comment comment={comment} key={comment.id}/>))}
@@ -79,13 +86,16 @@ class ViewPost extends Component {
             {commentModal && commentModal.isOpen && <CommentForm submitBtnText={commentModal.comment? 'Update' : 'Publish'} onSubmit={this.onAddComment} comment={commentModal.comment} post={post} onClose={this.closeCommentModal}/>}
           </ReactModal>
         </section></div>)}
+        {postDeleted}
       </div>
     );
   }
 }
 
 function mapStateToProps({posts, loadingData, comments, commentModal}) {
+  console.log('mapStateToProps')
+  console.log(posts)
   return {posts, loadingData, comments, commentModal}
 }
 
-export default connect(mapStateToProps, commentActions)(ViewPost)
+export default connect(mapStateToProps, {loadAllPosts,loadCommentsForPost, showCommentForm, hideCommentForm, commentAdded, commentUpdated})(ViewPost)
