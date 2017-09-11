@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
-import {loadAllPosts, loadCategories, loadPostForCategory} from '../actions'
+import {loadAllPosts} from '../actions/postActions'
+import {loadCategories} from '../actions'
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom'
 import ListPosts from './ListPosts'
@@ -31,16 +32,9 @@ class App extends Component {
     );
   }
 }
-function mapDispatchToProps(dispatch) {
-  return {
-    loadAllPosts: () => dispatch(loadAllPosts()),
-    loadCategories: () => dispatch(loadCategories()),
-    loadPostForCategory: (category) => dispatch(loadPostForCategory(category))
-  }
-}
 
 function mapStateToProps({posts, categories, filterByCategory, loadingData}) {
   return {posts, categories, filterByCategory, loadingData}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, {loadAllPosts, loadCategories})(App)

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {loadCommentsForPost, showCommentForm, hideCommentForm, commentAdded, commentUpdated} from '../actions'
+import * as commentActions from '../actions/commentActions'
 import {connect} from 'react-redux';
 
 import Post from './Post'
@@ -17,7 +17,7 @@ class ViewPost extends Component {
     super(props);
     this.openCommentModal = this.openCommentModal.bind(this);
     this.closeCommentModal = this.closeCommentModal.bind(this);
-    ReactModal.setAppElement('#layout');
+    ReactModal.setAppElement('#root');
   }
 
   openCommentModal = () => {
@@ -71,25 +71,16 @@ class ViewPost extends Component {
 
     return (
       <div>
-        <Post post={post} showReadMore={false} showEdit={true}/>
+        {post && (<div><Post post={post} showReadMore={false} showEdit={true}/>
         <section>
           <div className="comments-section-title">Comments {commentsCount} <div className="pure-button comment-add" onClick={this.openCommentModal}><span className="icon add"></span><span>Add Comment</span></div></div>
           {commentsForPost && commentsForPost.map((comment) => (<Comment comment={comment} key={comment.id}/>))}
           <ReactModal className='Modal' overlayClassName='Overlay' isOpen={commentModal && commentModal.isOpen} onRequestClose={this.closeCommentModal} contentLabel='Modal'>
             {commentModal && commentModal.isOpen && <CommentForm submitBtnText={commentModal.comment? 'Update' : 'Publish'} onSubmit={this.onAddComment} comment={commentModal.comment} post={post} onClose={this.closeCommentModal}/>}
           </ReactModal>
-        </section>
+        </section></div>)}
       </div>
     );
-  }
-}
-function mapDispatchToProps(dispatch) {
-  return {
-    loadCommentsForPost: (postId) => dispatch(loadCommentsForPost(postId)),
-    showCommentForm:() => dispatch(showCommentForm()),
-    hideCommentForm:() => dispatch(hideCommentForm()),
-    commentAdded:(comment) => dispatch(commentAdded(comment)),
-    commentUpdated:(comment) => dispatch(commentUpdated(comment))
   }
 }
 
@@ -97,4 +88,4 @@ function mapStateToProps({posts, loadingData, comments, commentModal}) {
   return {posts, loadingData, comments, commentModal}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ViewPost)
+export default connect(mapStateToProps, commentActions)(ViewPost)

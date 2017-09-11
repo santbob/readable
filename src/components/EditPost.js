@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
-import {postUpdated} from '../actions'
+import * as postActions from '../actions/postActions'
+
 import {connect} from 'react-redux';
 
 import PostForm from './PostForm'
@@ -39,14 +40,9 @@ class EditPost extends Component {
     return  (<PostForm categories={categories} submitBtnText='Update' onSubmit={this.onSubmit} post={post}/>);
   }
 }
-function mapDispatchToProps(dispatch) {
-  return {
-    postUpdated: (post) => dispatch(postUpdated(post))
-  }
-}
 
 function mapStateToProps({posts, loadingData, categories}) {
   return {posts, loadingData, categories}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditPost)
+export default connect(mapStateToProps, postActions)(EditPost)

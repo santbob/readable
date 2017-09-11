@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {postAdded} from '../actions'
+import * as postActions from '../actions/postActions'
 import * as API from '../api'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
@@ -29,14 +29,8 @@ class CreatePost extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    postAdded: (post) => dispatch(postAdded(post))
-  }
-}
-
 function mapStateToProps({categories}) {
   return {categories}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePost)
+export default connect(mapStateToProps, postActions)(CreatePost)

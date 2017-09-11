@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as utils from '../utils'
-import {voteOnComment, deleteComment, showCommentForm} from '../actions'
+import * as commentActions from '../actions/commentActions'
 import {connect} from 'react-redux';
 
 
@@ -25,16 +25,8 @@ class Comment extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    voteOnComment: (commentId, isUpVote) => dispatch(voteOnComment(commentId, isUpVote)),
-    deleteComment: (commentId) => dispatch(deleteComment(commentId)),
-    showCommentForm: (comment) => dispatch(showCommentForm(comment))
-  }
-}
-
 function mapStateToProps({comments}) {
   return {comments}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Comment)
+export default connect(mapStateToProps, commentActions)(Comment)

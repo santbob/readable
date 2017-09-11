@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
-import {loadAllPosts, loadCategories, sortBy, voteOnPost} from '../actions'
+import {loadAllPosts, voteOnPost} from '../actions/postActions'
+import {loadCategories, sortBy} from '../actions'
 import {connect} from 'react-redux';
 
 import Post from './Post'
@@ -44,7 +45,7 @@ class ListPosts extends Component {
 
     return (
         <div className="posts">
-          <select className="sort-option" value={sortBy} onChange={(event) => this.props.sortPost(event.target.value)}>
+          <select className="sort-option" value={sortBy} onChange={(event) => this.props.sortBy(event.target.value)}>
             {sortOptions.map((opt) => (
               <option key={opt}>{opt}</option>
             ))}
@@ -56,17 +57,9 @@ class ListPosts extends Component {
     );
   }
 }
-function mapDispatchToProps(dispatch) {
-  return {
-    loadAllPosts: () => dispatch(loadAllPosts()),
-    loadCategories: () => dispatch(loadCategories()),
-    sortPost: (by) => dispatch(sortBy(by)),
-    voteOnPost: (postId, isUpVote) => dispatch(voteOnPost(postId, isUpVote))
-  }
-}
 
 function mapStateToProps({posts, categories, filterByCategory, loadingData, sortPostsBy}) {
   return {posts, categories, filterByCategory, loadingData, sortPostsBy}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListPosts)
+export default connect(mapStateToProps, {loadAllPosts, loadCategories, sortBy, voteOnPost})(ListPosts)
