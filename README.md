@@ -1,53 +1,27 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+# Readable
+Redux based react project for the React Nanodegree @ Udacity
 
-## Table of Contents
-
-- [How To Install And Run The App](#how-to-install-and-run-the-app)
-- [Available Scripts](#available-scripts)
-  - [npm start](#npm-start)
-  - [npm test](#npm-test)
-  - [npm run build](#npm-run-build)
-  - [npm run eject](#npm-run-eject)
+This project was bootstrapped with from [Create React App](https://github.com/facebookincubator/create-react-app).
 
 ## How To Install And Run The App
 
-* clone/download the project;
-* In the project folder do `npm install`.
-* Clone/download the project at https://github.com/udacity/reactnd-project-readable-starter and follow its readme to start the dependent server.
-* Upon successful `install`, do `yarn start` or `npm start`, it should launch the browser with app at `http://localhost:3000/`
+* Step 1
+  Lets install the dependent server, you can grab a copy from https://github.com/udacity/reactnd-project-readable-starter and do `npm install` and `npm start` in the root of dependent server from the command terminal
 
-## Available Scripts
+  This will start the local server at port 3001
 
-In the project directory, you can run:
+* Step 2
 
-### `npm start`
+  Clone/Download this repo and then do `npm install` in the root of this project from the command terminal
+  do `yarn start` or `npm start`, it should launch the browser with app at `http://localhost:3000/`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+You are all set, this app is now running in your browser.
 
 
-### `npm run eject`
+## Thanks
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Thanks to the people contributing open source components for react. Thanks to yahoo for (purcecss) https://purecss.io/
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## License
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
+Readable is distributed under the MIT license.
