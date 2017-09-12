@@ -146,3 +146,16 @@
 .comment-author {
   color: #666;
 }
+
+.breadcrumb .nav-item a {
+  border: 0px;
+  margin-right: 10px;
+}
+.breadcrumb .nolink {
+  color: #333;
+}
+.breadcrumb .delimit {
+  color: #999;
+  font-size: 75%;
+  vertical-align: middle;
+}

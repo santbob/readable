@@ -16,3 +16,8 @@ export function truncate(content, length) {
       return content.substring(0,length) + '...';
     }
 }
+
+export function pathFromUrl(url) {
+  console.log("url", url)
+  return url && url.split("/");
+}

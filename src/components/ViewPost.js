@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom'
 import Post from './Post'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
-
+import BreadCrumbs from './BreadCrumbs'
 import ReactModal from 'react-modal';
 
 import * as API from '../api'
@@ -56,7 +56,6 @@ class ViewPost extends Component {
       : null
 
     if(!posts || !posts[postId]) {
-      console.log('triggering all posts')
       loadAllPosts()
     }
 
@@ -78,6 +77,7 @@ class ViewPost extends Component {
 
     return (
       <div>
+        <BreadCrumbs url={match && match.url}/>
         {post && !post.deleted && (<div><Post post={post} showReadMore={false} showEdit={true}/>
         <section>
           <div className="comments-section-title">Comments {commentsCount} <div className="pure-button comment-add" onClick={this.openCommentModal}><span className="icon add"></span><span>Add Comment</span></div></div>
@@ -93,8 +93,6 @@ class ViewPost extends Component {
 }
 
 function mapStateToProps({posts, loadingData, comments, commentModal}) {
-  console.log('mapStateToProps')
-  console.log(posts)
   return {posts, loadingData, comments, commentModal}
 }
 

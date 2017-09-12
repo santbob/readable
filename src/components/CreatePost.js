@@ -4,6 +4,7 @@ import * as API from '../api'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import PostForm from './PostForm'
+import BreadCrumbs from './BreadCrumbs'
 
 class CreatePost extends Component {
 
@@ -24,8 +25,13 @@ class CreatePost extends Component {
   }
 
   render() {
-    const {categories} = this.props
-    return (<PostForm categories={categories} submitBtnText='Publish' onSubmit={this.onSubmit}/>);
+    const {categories, match} = this.props
+    return (
+      <div>
+        <BreadCrumbs url={match && match.url}/>
+        <PostForm categories={categories} submitBtnText='Publish' onSubmit={this.onSubmit}/>
+      </div>
+    );
   }
 }
 

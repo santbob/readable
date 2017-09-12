@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {loadAllPosts, voteOnPost} from '../actions/postActions'
 import {loadCategories, sortBy} from '../actions'
 import {connect} from 'react-redux';
-
+import BreadCrumbs from './BreadCrumbs'
 import Post from './Post'
 
 class ListPosts extends Component {
@@ -45,6 +45,7 @@ class ListPosts extends Component {
 
     return (
         <div className="posts">
+          <BreadCrumbs url={match && match.url}/>
           <select className="sort-option" value={sortBy} onChange={(event) => this.props.sortBy(event.target.value)}>
             {sortOptions.map((opt) => (
               <option key={opt}>{opt}</option>

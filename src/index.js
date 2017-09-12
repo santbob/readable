@@ -14,6 +14,7 @@ import CreatePost from './components/CreatePost'
 import ViewPost from './components/ViewPost'
 import ListPosts from './components/ListPosts'
 import EditPost from './components/EditPost'
+
 import registerServiceWorker from './registerServiceWorker';
 import './assets/css/pure-min.css'
 import './assets/css/grids-responsive-min.css'
@@ -47,11 +48,11 @@ ReactDOM.render(
           <Link to="/create"><button className="header_right_center fab_btn">+</button></Link>
         </div>
         <div className="content">
-          <Route exact path="/" component={App}/>
-          <Route exact path="/create" component={CreatePost}/>
-          <Route exact path="/:category" component={ListPosts}/>
-          <Route exact path="/:category/:postId" component={ViewPost}/>
-          <Route exact path="/:category/:postId/edit" component={EditPost}/>
+          <Route name='Home' exact path="/" component={App}/>
+          <Route name='Add Post' exact path="/create" component={CreatePost}/>
+          <Route name='Post on Category' exact path="/:category" component={ListPosts}/>
+          <Route name='View Post' exact path="/:category/:postId" component={ViewPost}/>
+          <Route name='Edit Post' exact path="/:category/:postId/edit" component={EditPost}/>
         </div>
       </div>
     </ConnectedRouter>
