@@ -10,7 +10,7 @@ import createHistory from 'history/createBrowserHistory'
 import * as reducers from './reducers'
 import {Link} from 'react-router-dom'
 import App from './components/App'
-import CreatePost from './components/CreatePost'
+import AddPost from './components/AddPost'
 import ViewPost from './components/ViewPost'
 import ListPosts from './components/ListPosts'
 import EditPost from './components/EditPost'
@@ -45,14 +45,14 @@ ReactDOM.render(
         <div className="header">
           <h1 className="brand-title"><Link to={"/"}>The Reader</Link></h1>
           <h2 className="brand-tagline">A React Nanodegree project</h2>
-          <Link to="/create"><button className="header_right_center fab_btn">+</button></Link>
+          <Link to="/addpost"><button className="header_right_center fab_btn">+</button></Link>
         </div>
         <div className="content">
-          <Route name='Home' exact path="/" component={App}/>
-          <Route name='Add Post' exact path="/create" component={CreatePost}/>
-          <Route name='Post on Category' exact path="/:category" component={ListPosts}/>
-          <Route name='View Post' exact path="/:category/:postId" component={ViewPost}/>
-          <Route name='Edit Post' exact path="/:category/:postId/edit" component={EditPost}/>
+          <Route exact path="/" component={App}/>
+          <Route exact path="/addpost" component={AddPost}/>
+          <Route exact path="/:category" component={ListPosts}/>
+          <Route exact path="/:category/:postId" component={ViewPost}/>
+          <Route exact path="/:category/:postId/edit" component={EditPost}/>
         </div>
       </div>
     </ConnectedRouter>

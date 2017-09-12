@@ -29,6 +29,10 @@ class ListPosts extends Component {
       ? match.params.category
       : null
 
+    if(category === 'addpost'){
+      return <span/>
+    }
+
     const filteredPosts = Object.values(posts).filter(post => !post.deleted && (!category || (category && post.category === category)));
 
     filteredPosts.sort(function(a, b) {

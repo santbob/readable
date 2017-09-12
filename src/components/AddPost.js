@@ -6,7 +6,7 @@ import {withRouter} from 'react-router-dom'
 import PostForm from './PostForm'
 import BreadCrumbs from './BreadCrumbs'
 
-class CreatePost extends Component {
+class AddPost extends Component {
 
   constructor(props) {
     super(props);
@@ -39,4 +39,4 @@ function mapStateToProps({categories}) {
   return {categories}
 }
 
-export default connect(mapStateToProps, postActions)(CreatePost)
+export default connect(mapStateToProps, postActions)(AddPost)
